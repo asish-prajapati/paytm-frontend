@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Card, Button } from "react-bootstrap";
+import axios from "axios";
 
 function App() {
+  const handlePay = () => {
+    axios
+      .get("http://localhost:4000/api/payment")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img variant="top" src="https://picsum.photos/150/150.jpg" />
+        <Card.Body>
+          <Card.Title>My Product</Card.Title>
+          <Card.Text>Click on Buy to place order</Card.Text>
+          <Button variant="primary" onClick={handlePay}>
+            Buy
+          </Button>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
